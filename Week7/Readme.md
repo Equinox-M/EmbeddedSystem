@@ -9,7 +9,7 @@
 
 External Interrupt (INT0)
 
-### Video: https://youtu.be/PMuIu6LZQDo
+
 
 <details>
 <summary>PROTOTYPE</summary>
@@ -20,7 +20,7 @@ External Interrupt (INT0)
 
 Pin Change Interrupt (PCINT0)
 
-### Video: https://youtu.be/smmJ734gdhY
+
 
 <details>
 <summary>PROTOTYPE</summary>
@@ -31,7 +31,7 @@ Pin Change Interrupt (PCINT0)
 
 Timer Interrupt (Timer2)
 
-### Video: https://youtu.be/5k5fazg4HBY
+
 
 <details>
 <summary>PROTOTYPE</summary>
