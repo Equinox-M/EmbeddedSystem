@@ -1,6 +1,6 @@
 # Week 5 Examples (Analog Input)
 
-## Video: https://youtu.be/9CmP-WbL32c
+
 
 <details>
 <summary>CIRCUIT DIAGRAM</summary>
