@@ -1,3 +1,5 @@
+#include <avr/io.h>
+
 unsigned long prevmillis1 = 0;
 unsigned long prevmillis2 = 0;
 unsigned long prevmillis3 = 0;
@@ -6,150 +8,206 @@ unsigned long prevmillis5 = 0;
 unsigned long prevmillis6 = 0;
 unsigned long prevmillis7 = 0;
 unsigned long prevmillis8 = 0;
-unsigned long currentmillis1 = 0;
-unsigned long currentmillis2 = 0;
-unsigned long currentmillis3 = 0;
-unsigned long currentmillis4 = 0;
-unsigned long currentmillis5 = 0;
-unsigned long currentmillis6 = 0;
-unsigned long currentmillis7 = 0;
-unsigned long currentmillis8 = 0;
-bool flag1 = 0;
-bool flag2 = 0;
-bool flag3 = 0;
-bool flag4 = 0;
-bool flag5 = 0;
-bool flag6 = 0;
-bool flag7 = 0;
-bool flag8 = 0;
+
+unsigned long current1 = 0;
+unsigned long current2 = 0;
+unsigned long current3 = 0;
+unsigned long current4 = 0;
+unsigned long current5 = 0;
+unsigned long current6 = 0;
+unsigned long current7 = 0;
+unsigned long current8 = 0;
+
 
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  DDRA = 0b11111111;
+
+  unsigned char *dir = (unsigned char*) 0x2A; //Points to DDRD (To set the pins to either OUTPUT/INPUT)
+  
+  *dir = 255;
+
 }
 
+
+
 void loop() {
-  // put your main code here, to run repeatedly:
-  currentmillis1 = currentmillis2 = currentmillis3 = currentmillis4 = currentmillis5 = currentmillis6 = currentmillis7 = currentmillis8 =  millis();
+
+  current1 = current2 = current3 = current4 = current5 = current6 = current7 = current8 = millis();
+  unsigned char *port = (unsigned char*) 0x2B; //Points to PORTD (Pin 0-7 Arduino)
   
-  if (flag1 == 0) {
-    PORTA |= 0b00000001;
-    if ((currentmillis1 - prevmillis1) > 781) {
-      flag1 = 1;
-      prevmillis1 = currentmillis1;
+  //Pin 0
+  if (((*port) & 0b00000001) == 0){
+    
+    if (current1 - prevmillis1 >= 515){
+
+      *port |= 0b00000001;
+      prevmillis1 = current1;
+      
     }
+    
   }
-  if (flag1 == 1) {
-    PORTA &= 0b11111110;
-    if ((currentmillis1 - prevmillis1) > 515) {
-      flag1 = 0;
-      prevmillis1 = currentmillis1;
-    }
-  }
-  
-  if (flag2 == 0) {
-    PORTA |= 0b00000010;
-    if ((currentmillis2 - prevmillis2) > 2014) {
-      flag2 = 1;
-      prevmillis2 = currentmillis2;
-    }
-  }
-  if (flag2 == 1) {
-    PORTA &= 0b11111101;
-    if ((currentmillis2 - prevmillis2) > 1348) {
-      flag2 = 0;
-      prevmillis2 = currentmillis2;
+
+  else {
+
+    if (current1 - prevmillis1 >= 781){
+
+      *port &= 0b11111110;
+      prevmillis1 = current1;
+      
     }
   }
 
-  if (flag3 == 0) {
-    PORTA |= 0b00000100;
-    if ((currentmillis3 - prevmillis3) > 343) {
-      flag3 = 1;
-      prevmillis3 = currentmillis3;
+  //Pin 1
+  if (((*port) & 0b00000010) == 0){
+    
+    if (current2 - prevmillis2 >= 1348){
+
+      *port |= 0b00000010;
+      prevmillis2 = current2;
+      
     }
+    
   }
-  if (flag3 == 1) {
-    PORTA &= 0b11111011;
-    if ((currentmillis3 - prevmillis3) > 573) {
-      flag3 = 0;
-      prevmillis3 = currentmillis3;
-    }
-  }
-  
-  if (flag4 == 0) {
-    PORTA |= 0b00001000;
-    if ((currentmillis4 - prevmillis4) > 678) {
-      flag4 = 1;
-      prevmillis4 = currentmillis4;
-    }
-  }
-  if (flag4 == 1) {
-    PORTA &= 0b11110111;
-    if ((currentmillis4 - prevmillis4) > 1839) {
-      flag4 = 0;
-      prevmillis4 = currentmillis4;
+
+  else {
+
+    if (current2 - prevmillis2 >= 2014){
+
+      *port &= 0b11111101;
+      prevmillis2 = current2;
+      
     }
   }
 
-  if (flag5 == 0) {
-    PORTA |= 0b00010000;
-    if ((currentmillis5 - prevmillis5) > 342) {
-      flag5 = 1;
-      prevmillis5 = currentmillis5;
+  //Pin 2
+  if (((*port) & 0b00000100) == 0){
+    
+    if (current3 - prevmillis3 >= 573){
+
+      *port |= 0b00000100;
+      prevmillis3 = current3;
+      
     }
+    
   }
-  if (flag5 == 1) {
-    PORTA &= 0b11101111;
-    if ((currentmillis5 - prevmillis5) > 534) {
-      flag5 = 0;
-      prevmillis5 = currentmillis5;
-    }
-  }
-  
-  if (flag6 == 0) {
-    PORTA |= 0b00100000;
-    if ((currentmillis6 - prevmillis6) > 1478) {
-      flag6 = 1;
-      prevmillis6 = currentmillis6;
-    }
-  }
-  if (flag6 == 1) {
-    PORTA &= 0b11011111;
-    if ((currentmillis6 - prevmillis6) > 326) {
-      flag6 = 0;
-      prevmillis6 = currentmillis6;
+
+  else {
+
+    if (current3 - prevmillis3 >= 343){
+
+      *port &= 0b11111011;
+      prevmillis3 = current3;
+      
     }
   }
 
-  if (flag7 == 0) {
-    PORTA |= 0b01000000;
-    if ((currentmillis7 - prevmillis7) > 1859) {
-      flag7 = 1;
-      prevmillis7 = currentmillis7;
+  //Pin 3
+  if (((*port) & 0b00001000) == 0){
+    
+    if (current4 - prevmillis4 >= 1839){
+
+      *port |= 0b00001000;
+      prevmillis4 = current4;
+      
+    }
+    
+  }
+
+  else {
+
+    if (current4 - prevmillis4 >= 678){
+
+      *port &= 0b11110111;
+      prevmillis4 = current4;
+      
     }
   }
-  if (flag7 == 1) {
-    PORTA &= 0b10111111;
-    if ((currentmillis7 - prevmillis7) > 351) {
-      flag7 = 0;
-      prevmillis7 = currentmillis7;
+
+  //Pin 4
+  if (((*port) & 0b00010000) == 0){
+    
+    if (current5 - prevmillis5 >= 534){
+
+      *port |= 0b00010000;
+      prevmillis5 = current5;
+      
+    }
+    
+  }
+
+  else {
+
+    if (current5 - prevmillis5 >= 342){
+
+      *port &= 0b11101111;
+      prevmillis5 = current5;
+      
     }
   }
-  
-  if (flag8 == 0) {
-    PORTA |= 0b10000000;
-    if ((currentmillis8 - prevmillis8) > 777) {
-      flag8 = 1;
-      prevmillis8 = currentmillis8;
+
+  //Pin 5
+  if (((*port) & 0b00100000) == 0){
+    
+    if (current6 - prevmillis6 >= 326){
+
+      *port |= 0b00100000;
+      prevmillis6 = current6;
+      
+    }
+    
+  }
+
+  else {
+
+    if (current6 - prevmillis6 >= 1478){
+
+      *port &= 0b11011111;
+      prevmillis6 = current6;
+      
     }
   }
-  if (flag8 == 1) {
-    PORTA &= 0b01111111;
-    if ((currentmillis8 - prevmillis8) > 888) {
-      flag8 = 0;
-      prevmillis8 = currentmillis8;
+
+  //Pin 6
+  if (((*port) & 0b01000000) == 0){
+    
+    if (current7 - prevmillis7 >= 351){
+
+      *port |= 0b01000000;
+      prevmillis7 = current7;
+      
+    }
+    
+  }
+
+  else {
+
+    if (current7 - prevmillis7 >= 1859){
+
+      *port &= 0b10111111;
+      prevmillis7 = current7;
+      
     }
   }
+
+  //Pin 7
+  if (((*port) & 0b10000000) == 0){
+    
+    if (current8 - prevmillis8 >= 888){
+
+      *port |= 0b10000000;
+      prevmillis8 = current8;
+      
+    }
+    
+  }
+
+  else {
+
+    if (current8 - prevmillis8 >= 777){
+
+      *port &= 0b01111111;
+      prevmillis8 = current8;
+      
+    }
+  }
+
 }
