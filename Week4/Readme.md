@@ -3,7 +3,7 @@
 
 2 LEDs with different ON and OFF timings.
 
-### Video: https://youtu.be/XOgXczWW7fc
+
 
 <details>
 <summary>CIRCUIT DIAGRAM</summary>
@@ -19,7 +19,7 @@
 
 Button counter with debouncing.
 
-### Video: https://youtu.be/DDvdOJFxsr0
+
 
 <details>
 <summary>CIRCUIT DIAGRAM</summary>
@@ -35,7 +35,7 @@ Button counter with debouncing.
 
 8 LEDs with different timings on PORT A on Arduino Mega
 
-### Video: https://youtu.be/E67LZ446EoY
+
 
 <details>
 <summary>CIRCUIT DIAGRAM</summary>
