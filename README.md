@@ -5,6 +5,19 @@ MCTE 4342 (Section 1) Weekly Work.
 ## WEBINAR 
 link ( https://drive.google.com/file/d/1jkhG1h6swCxM0qGVb-xkGu1_PBMeOJ5G/view?usp=sharing )
 
+## Q&A:
+Br Mahmoud: Which are the parts that the Embedded Systems are divided into?
+My answer: The embedded system is divided into hardware, software, and real-time operating system.
+Sis Ezza: What are the commonly found errors in embedded systems?
+My answer:
+- Damage of memory devices due to transient current and static discharges.
+-Some memory locations being inaccessible in storage due to garbage or errors.
+-Faulty control signals.
+Br Omar: Why embedded system is useful?
+My answer: Besides the advantages i mentioned With embedded system, it is possible to replace dozens or even more of hardware logic gates, input buffers, timing circuits, output drivers, etc. with a relatively cheap microprocessor.
+Br Azim: what is the difference between microprocessor and microcontroller?
+My answer: Microprocessor is managers of the resources (I/O, memory) which lie outside of its architecture.
+Microcontroller have I/O, memory, etc. built into it and specifically designed for control.
 
 ## Week 4 - GPIO
 
