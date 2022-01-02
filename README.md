@@ -1,6 +1,11 @@
 # EmbeddedSystem
 MCTE 4342 (Section 1) Weekly Work.
 
+
+## WEBINAR 
+link ( https://drive.google.com/file/d/1jkhG1h6swCxM0qGVb-xkGu1_PBMeOJ5G/view?usp=sharing )
+
+
 ## Week 4 - GPIO
 
 Examples include turning ON and OFF LEDs at different timings, as well as making button counters with debouncing.
