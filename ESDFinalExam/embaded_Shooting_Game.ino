@@ -1,26 +1,26 @@
-#include <LiquidCrystal.h>
+#include <LiquidCrystal.h>                                        //including the necessary libraries specially for the servo and LCD since we are using I2C 
 #include <Wire.h>
 #include <Servo.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-#define TOT_TARGETS 4
-#define TOT_SENSORS 4
+#define TOT_TARGETS 4                                             // number of servos
+#define TOT_SENSORS 4			                                        //number of sensors
 #define PIN_TARGET 7
 
 
-Servo Targets[TOT_TARGETS];  //Servo
-int targetSensor[] = {A0, A1, A2, A3};  // LDR Sensor
+Servo Targets[TOT_TARGETS];                                    //Servo
+int targetSensor[] = {A0, A1, A2, A3};                        // LDR Sensor-signal pins
 int readingSensor[TOT_SENSORS];
 int targetTimer[] = {0, 0, 0, 0}; 
-int score = 0;
+int score = 0;                     
 int timer = 100;
-unsigned long interval = 100; // the time we need to wait
-unsigned long previousMillis = 0; // millis() returns an unsigned long.
+unsigned long interval = 100;                                    // the time we need to wait
+unsigned long previousMillis = 0;                             // millis() returns an unsigned long.
 
 void setup() {
   Serial.begin(9600);
-
+// Setting up the LCD	
   lcd.backlight();
   lcd.clear();
   lcd.begin();
@@ -29,7 +29,7 @@ void setup() {
   lcd.setCursor(0, 1);
   lcd.print("TIMER: 0");
 
-  //attaches the servos from pin 7 to 10
+  // attaches the servos from pin 7 to 10
   for (int targetNumber = 0; targetNumber < TOT_TARGETS; targetNumber++)
   {
     Targets[targetNumber].attach(targetNumber + PIN_TARGET);
@@ -40,31 +40,31 @@ void setup() {
 void loop() {
 
   lcd.clear();
-  lcd.setCursor(0, 0);  //(Column,Row)
+  lcd.setCursor(0, 0); 				 //(Column, Row)
   lcd.print("SCORE: ");
   lcd.setCursor(12, 0);
   lcd.print(score);
-  lcd.setCursor(0, 1);  //(Column,Row)
+  lcd.setCursor(0, 1); 				 //(Column, Row)
   lcd.print("TIME: ");
   lcd.setCursor(12, 1);
   lcd.print(timer);
 
-  unsigned long currentMillis = millis(); // grab current time
+  unsigned long currentMillis = millis();			 // grab current time
 
   // check if "interval" time has passed (100 milliseconds)
   if ((unsigned long)(currentMillis - previousMillis) >= interval) {
 
-    for (int targetsensorNumber = 0; targetsensorNumber < TOT_SENSORS; targetsensorNumber++) {
-      readingSensor[targetsensorNumber] = analogRead((targetSensor[targetsensorNumber]));
+      for (int targetsensorNumber = 0; targetsensorNumber < TOT_SENSORS; targetsensorNumber++) {
+      readingSensor[targetsensorNumber] =analogRead((targetSensor[targetsensorNumber]));
     }
     previousMillis = millis();
     Serial.print(readingSensor[1]);
     Serial.println(readingSensor[2]);
   }
-  villainTarget();
-  targetDown();
-  ifZero();
-  Countdowntimer();
+  villainTarget();					 // for turning on servos randomly 90 degree and off 0 degree 
+  targetDown(); 						// for LDR sensing
+  ifZero();				//  If the timer reach Zero restart game in 10s
+  Countdowntimer(); 					//Timer counting down 
   
 }
 
@@ -125,7 +125,7 @@ void targetDown() {
     Targets[1].write(1);
     delay(100);
   }
-  // if target speacial
+  // if target different
   if (readingSensor[2] > 990) {
     score = score + 5;
     Targets[2].write(2);
